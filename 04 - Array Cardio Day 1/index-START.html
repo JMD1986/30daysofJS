@@ -35,38 +35,63 @@
     console.log(bornInFiftenhundreds)
     // Array.prototype.map()
     // 2. Give us an array of the inventors' first and last names
-    let firstAndLast = inventors.map(x=>[x.first,x.last])
+    let firstAndLast = inventors.map(x=>`${x.first} ${x.last}`)
     console.log(firstAndLast)
     // Array.prototype.sort()
     // 3. Sort the inventors by birthdate, oldest to youngest
-    let sortedByBirth = inventors.sort(function (a, b) {
-  return a.year - b.year;
-})
+    let sortedByBirth = inventors.sort((a,b)=> a.year<b.year ? 1 : -1);
 console.log(sortedByBirth)
     // Array.prototype.reduce()
     // 4. How many years did all the inventors live?
-  let totalYearLived = inventors.map(x=>(x.passed-x.year)).reduce(function (a, b) {
-  return a + b;
-})
+  let totalYearLived = inventors.reduce((total, inventor)=>{
+    return total + (inventor.passed -inventor.year);
+  }, 0)
   console.log(totalYearLived)
     // 5. Sort the inventors by years lived
-let sortedByYearsLived = inventors.sort(function (a, b) {
-  return (a.passed-a.year) - (b.passed-b.year);
+// let sortedByYearsLived = inventors.sort(function (a, b) {
+//   return (a.passed-a.year) - (b.passed-b.year);
+// })
+let sortedByYearsLived = inventors.sort((a,b)=>{
+  let invA = a.passed - a.year;
+  let invB = b.passed - b.year;
+  invA > invB ? 1 : -1;
 })
 console.log(sortedByYearsLived)
     // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
     // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
-
+    // const category = document.querySelector('.mw-category');
+    // const links = [...document.querySelectorAll('a')];
+    // const de = links
+    // .map(text=>text.textContent)
+    // .filter(streetName=>streetName.includes('de'))
 
     // 7. sort Exercise
     // Sort the people alphabetically by last name
-let sortedByLastName = inventors.sort(function (a, b) {
-  return a.last - b.last;
-})
-console.log(sortedByLastName)
+    // first method is with the inventors
+    // let sortedByLastName = inventors.sort(function (a, b) {
+    //   return a.last - b.last;
+    // })
+    // console.log(sortedByLastName)
+    // second method is mine with people
+    // people.map(x=>x.split(" ")).sort((a,b)=> a[1]>b[1] ? 1 : -1)
+    const sortedByLastName = people.sort((a,b)=>{
+      const [bLast, bFirst] = b.split(", ")
+      const [aLast, aFirst] = a.split(", ")
+      return aLast>bLast ? 1 : -1
+    })
+    console.log(sortedByLastName)
     // 8. Reduce Exercise
     // Sum up the instances of each of these
     const data = ['car', 'car', 'truck', 'truck', 'bike', 'walk', 'car', 'van', 'bike', 'walk', 'car', 'van', 'car', 'truck' ];
+      const duplicates =data.reduce((obj,item)=>{
+      if (!obj[item]) {
+        obj[item] = 0;
+      }
+      obj[item]++;
+      return obj;
+    }, {});
+
+    console.log(duplicates);
 
   </script>
 </body>
