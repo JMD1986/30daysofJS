@@ -18,29 +18,63 @@
     }
 
     // Regular
-
+    console.log("HEllo");
     // Interpolated
-
+    console.log("hello I am %s string", "butt");
+    console.log(`hello i am a ${this} thing`);
     // Styled
-
+    console.log("%c i am red", "color:red");
     // warning!
+    console.warn("ALERT!");
 
     // Error :|
+    console.error("UH OH");
 
     // Info
+    console.error("there is no ethical consumption under capitalism");
 
     // Testing
+    console.assert(1===2, "thats incorrect");
 
     // clearing
-
+    console.clear();
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
 
-    // Grouping together
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
 
-    // timing
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
 
+    // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/wesbos')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+    console.table(dogs);
   </script>
 </body>
 </html>
