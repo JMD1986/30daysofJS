@@ -15,18 +15,33 @@
   ctx.lineJoin ="round";
   ctx.lineCap = "round";
   ctx.lineWidth=100;
+  let hue = 0;
   let isDrawing = false;
   let lastX=0;
   let lastY=0;
+  let direction = true;
   function draw(x){
     if (!isDrawing) return;
     console.log(x)
+    ctx.strokeStyle=`hsl(${hue}, 100%, 50%)`;
     ctx.beginPath();
     ctx.moveTo(lastX,lastY);
     ctx.lineTo(x.offsetX, x.offsetY);
     ctx.stroke();
     lastX=x.offsetX;
     lastY=x.offsetY;
+    hue++
+    if (hue >=360){
+      hue=0;
+    }
+    if (ctx.lineWidth>100 || ctx.lineWidth<=1){
+      direction = !direction;
+    }
+    if (direction){
+      ctx.lineWidth++;
+    } else {
+      ctx.lineWidth--;
+    }
   }
   canvas.addEventListener('mousemove', draw)
   canvas.addEventListener('mousedown',(x)=>{
