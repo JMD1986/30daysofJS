@@ -1,6 +1,28 @@
 /* get our elements */
 
-const playButtom = document.querySelector('.player__button')
+const player = document.querySelector('.player');
+const video = player.querySelector('.viewer');
+const progress = player.querySelector('.progress');
+const progressBar = player.querySelector('.progress__filled');
+const toggle = player.querySelector('.toggle');
+const skipButtons = player.querySelectorAll('[data-skip]');
+const ranges = player.querySelectorAll('.player__slider');
+
+
 /* build out functions*/
+function togglePlay(){
+return (video.paused ? video.play() : video.pause())
+}
+
+function updateButton(){
+  console.log("update button");
+  const icon = this.paused ? '►' : '❚ ❚';;
+  toggle.textContent = icon;
+}
 
 /* create event listeners */
+video.addEventListener('click',togglePlay)
+video.addEventListener('play',updateButton)
+video.addEventListener('pause',updateButton)
+
+toggle.addEventListener('click',togglePlay)
