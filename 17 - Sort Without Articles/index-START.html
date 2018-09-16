@@ -44,10 +44,17 @@
   <ul id="bands"></ul>
 
 <script>
+  function strip(x){
+    return x.replace(/^(a |the |an )/i, "").trim()
+  }
 const bands = ['The Plot in You', 'The Devil Wears Prada', 'Pierce the Veil', 'Norma Jean', 'The Bled', 'Say Anything', 'The Midway State', 'We Came as Romans', 'Counterparts', 'Oh, Sleeper', 'A Skylit Drive', 'Anywhere But Here', 'An Old Dog'];
-
+const sortedArr = bands.sort((a,b)=>{
+ return strip(a)>strip(b) ? 1 : -1;
+})
+document.querySelector('#bands').innerHTML = sortedArr.map(x=> `<li>${x}</li>`).join("")
 
 </script>
 
 </body>
+
 </html>
