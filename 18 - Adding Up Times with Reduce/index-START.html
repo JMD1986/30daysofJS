@@ -182,6 +182,21 @@
     </li>
   </ul>
 <script>
+/* the following the jankey original attempt at solving this.
+const timeArr= Array.prototype.slice.call(document.querySelectorAll('[data-time]'));
+ const justTimes =timeArr.map(x=>x.dataset.time)
+ let minutes = [];
+ let seconds = [];
+ justTimes.map(x=>{
+   minutes.push(parseFloat(x.split(":")[0]))
+   seconds.push(parseFloat(x.split(":")[1]))
+ })
+ const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  minutes = minutes.reduce(reducer)
+let minsandhours= (seconds.reduce(reducer)/60)
+
+minutes += parseFloat(minsandhours.toString().split(".")[0])
+*/
 </script>
 </body>
 </html>
