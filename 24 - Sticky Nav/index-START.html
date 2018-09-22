@@ -54,7 +54,16 @@
   </div>
 
 <script>
-
+  const nav = document.querySelector('#main')
+  const topOfNav = nav.offsetTop;
+  function fixedNav(){
+    if(topOfNav <= window.scrollY){
+      nav.style.position = 'fixed';
+    } else if (topOfNav > window.scrollY){
+      nav.style.position ="static";
+    }
+  }
+  window.addEventListener('scroll', fixedNav)
 </script>
 
 </body>
